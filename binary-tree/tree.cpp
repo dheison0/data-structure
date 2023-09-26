@@ -25,7 +25,29 @@ bool Tree::is_full() {
   return false;
 }
 
-void Tree::insert(Student) {}
+void Tree::insert(Student student) {
+  if (is_full()) {
+    cout << "tree is full, can't insert" << endl; // throw
+    return;
+  }
+  Node *newNode = new Node;
+  newNode->student = student;
+  newNode->left = NULL;
+  newNode->right = NULL;
+  if (root == NULL) {
+    root = newNode;
+    return;
+  }
+  Node *tmpNode = root;
+  while (tmpNode != NULL) {
+    if (student.get_ra() < tmpNode->student.get_ra()) {
+      tmpNode = tmpNode->left;
+    } else {
+      tmpNode = tmpNode->right;
+    }
+  }
+  tmpNode = newNode;
+}
 
 void Tree::remove(Student) {}
 
