@@ -51,7 +51,22 @@ void Tree::insert(Student student) {
 
 void Tree::remove(Student) {}
 
-void Tree::get(Student &, bool &) {}
+void Tree::get(Student &student, bool &found) {
+  int wantedRA = student.get_ra();
+  found = false;
+  Node *tmpNode = root;
+  while (tmpNode != NULL && !found) {
+    int tmpRA = student.get_ra();
+    if (tmpRA == wantedRA) {
+      student = tmpNode->student;
+      found = true;
+    } else if (wantedRA < tmpRA) {
+      tmpNode = tmpNode->left;
+    } else {
+      tmpNode = tmpNode->right;
+    }
+  }
+}
 
 void Tree::print_pre_order(Node *) {}
 
