@@ -2,7 +2,8 @@
 
 using namespace std;
 
-class Student {
+class Student
+{
 private:
   string name;
   int ra;

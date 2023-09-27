@@ -1,11 +1,13 @@
 #include "student.h"
 
-Student::Student() {
+Student::Student()
+{
   ra = -1;
   name = "";
 }
 
-Student::Student(string n, int r) {
+Student::Student(string n, int r)
+{
   name = n;
   ra = r;
 }
