@@ -49,7 +49,45 @@ void Tree::insert(Student student) {
   tmpNode = newNode;
 }
 
-void Tree::remove(Student) {}
+void Tree::remove(Student student) { removeSearch(student, root); }
+
+void Tree::removeSearch(Student student, Node *actual) {
+  int ra = student.get_ra();
+  Node *tmpNode = actual;
+  while (tmpNode != NULL) {
+    if (ra == tmpNode->student.get_ra()) {
+      delete_node(tmpNode);
+      break;
+    } else if (ra < tmpNode->student.get_ra()) {
+      tmpNode = tmpNode->left;
+    } else {
+      tmpNode = tmpNode->right;
+    }
+  }
+}
+
+void Tree::delete_node(Node *actual) {
+  Node *tmpNode = actual;
+  if (actual->left == NULL) {
+    actual = actual->right;
+    delete tmpNode;
+  } else if (actual->right == NULL) {
+    actual = actual->left;
+    delete tmpNode;
+  } else {
+    Student nextStudent;
+    get_next(nextStudent, actual);
+    actual->student = nextStudent;
+    removeSearch(nextStudent, actual->right);
+  }
+}
+
+void Tree::get_next(Student &student, Node *actual) {
+  actual = actual->right;
+  while (actual->left != NULL)
+    actual = actual->left;
+  student = actual->student;
+}
 
 void Tree::get(Student &student, bool &found) {
   int wantedRA = student.get_ra();

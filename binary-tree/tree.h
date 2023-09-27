@@ -21,6 +21,9 @@ public:
   bool is_full();
   void insert(Student);
   void remove(Student);
+  void removeSearch(Student, Node *);
+  void delete_node(Node *);
+  void get_next(Student &, Node *);
   void get(Student &, bool &);
   void print_pre_order(Node *);
   void print_order(Node *);
